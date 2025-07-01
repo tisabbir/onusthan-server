@@ -27,9 +27,13 @@ app.use('/api/auth', authRoutes);
 app.use('/api/events', eventRoutes);
 app.use('/api/myevents', userEventRoutes);
 
-
-connectDB().then(() => {
-  app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Server running on port ${process.env.PORT}`);
+console.log("⏳ Connecting to database...");
+connectDB()
+  .then(() => {
+    app.listen(PORT, '0.0.0.0', () => {
+      console.log(`Server running on port ${PORT}`);
+    });
+  })
+  .catch(err => {
+    console.error("❌ Failed to connect to MongoDB:", err);
   });
-});
