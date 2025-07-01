@@ -21,7 +21,7 @@ app.use(express.json());
 const PORT = process.env.PORT || 10000;
 
 // Routes
-app.get("/api", (req, res) => {
+app.get("/", (req, res) => {
   res.send("Onusthan API is running");
 });
 app.use("/api/auth", authRoutes);
@@ -38,6 +38,3 @@ connectDB()
   .catch((err) => {
     console.error("❌ Failed to connect to MongoDB:", err);
   });
-
-module.exports = app;
-module.exports.handler = serverless(app);
